@@ -50,8 +50,8 @@ namespace leaderboard
             // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile("Leaderboard/appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"Leaderboard/appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
             app.UseMvc();
