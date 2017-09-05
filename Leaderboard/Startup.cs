@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using leaderboard.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -33,6 +34,11 @@ namespace leaderboard
             services.Add(new ServiceDescriptor(
                 typeof(IRedisClientsManager),
                 c => new BasicRedisClientManager(Configuration.GetConnectionString("redis")),
+                ServiceLifetime.Singleton
+            ));
+            services.Add(new ServiceDescriptor(
+                typeof(ScoreRepository),
+                c => new ScoreRepository(c.GetService<IRedisClientsManager>()),
                 ServiceLifetime.Singleton
             ));
 
